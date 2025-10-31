@@ -1,12 +1,28 @@
+import bg from "public/bg.png";
 import Link from "next/link";
-import Navigation from "./_components/Navigation";
+import Image from "next/image";
 
+//home page
 export default function Page() {
   return (
-    <div>
-      <h1>Guestbook. Booking with ease!</h1>
+    <div className="mt-24">
+      <Image
+        src={bg}
+        alt="A foresty mountain with one cabin"
+        className="mb-10"
+      />
+      <div>
+        <h1 className="text-5xl text-primary-50 mb-10 tracking-tight font-normal">
+          Guestbook. Booking with ease!
+        </h1>
 
-      <Link href="/cabins">Explore luxory accomodations</Link>
+        <Link
+          href="/cabins"
+          className="rounded-md bg-accent-500 px-8 py-6 text-primary-800 text-lg font-semibold hover:bg-accent-600 transition-all"
+        >
+          Explore luxory accomodations
+        </Link>
+      </div>
     </div>
   );
 }
