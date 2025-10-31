@@ -1,5 +1,15 @@
+import Counter from "../_components/Counter";
+
+export const metadata = {
+  title: "Cabins",
+};
+
 function Page() {
-  return <h1>Cabins page</h1>;
+  return (
+    <div>
+      <h1>All Cabins</h1>
+    </div>
+  );
 }
 
 export default Page;
