@@ -5,14 +5,17 @@ import Image from "next/image";
 //home page
 export default function Page() {
   return (
-    <div className="mt-24">
+    <div className="mt-28">
       <Image
         src={bg}
         alt="A foresty mountain with one cabin"
-        className="mb-10"
+        fill
+        placeholder="blur"
+        quality={90}
+        className="object-cover object-top"
       />
-      <div>
-        <h1 className="text-5xl text-primary-50 mb-10 tracking-tight font-normal">
+      <div className="z-10 relative text-center">
+        <h1 className="text-8xl text-primary-50 tracking-tight font-normal mb-10 ">
           Guestbook. Booking with ease!
         </h1>
 
