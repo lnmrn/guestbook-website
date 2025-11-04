@@ -11,7 +11,7 @@ const josefin = Josefin_Sans({
 export const metadata = {
   title: {
     template: "%s / Guestbook",
-    default: "Welcome / Guestbook",
+    default: "Guestbook Outdoors 🌲",
   },
   description:
     "Some nice description about your hotel/hostel or similar service.",

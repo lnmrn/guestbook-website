@@ -16,7 +16,7 @@ export default function Page() {
       />
       <div className="z-10 relative text-center">
         <h1 className="text-8xl text-primary-50 tracking-tight font-normal mb-10 ">
-          Guestbook. Booking with ease!
+          Guestbook Outdoors. Booking with ease!
         </h1>
 
         <Link
