@@ -11,7 +11,7 @@ function Page() {
   return (
     <div className="grid grid-cols-5 gap-x-24 gap-y-32 text-lg items-center mt-10">
       <div className="col-span-3">
-        <h1 className="text-xl mb-10 text-accent-400 font-medium">
+        <h1 className="text-4xl mb-10 text-accent-400 font-medium">
           Welcome to Guestbook Outdoors
         </h1>
         <div className="space-y-8">
@@ -42,11 +42,16 @@ function Page() {
       <div className="col-span-2">
         <Image
           src={about1}
+          placeholder="blur"
           alt="A group of people sitting around a campfire next to a luxurious cabin."
         />
       </div>
       <div className="col-span-2">
-        <Image src={about2} alt="A close up photo of the group of people." />
+        <Image
+          src={about2}
+          placeholder="blur"
+          alt="A close up photo of the group of people."
+        />
       </div>
       <div className="col-span-3">
         <h1 className="text-4xl mb-10 text-accent-400 font-medium">
