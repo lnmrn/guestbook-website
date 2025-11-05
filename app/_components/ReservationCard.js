@@ -3,8 +3,7 @@ import { PencilSquareIcon } from "@heroicons/react/24/outline";
 import { format, isPast, isToday } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
-import DeleteReservation from "../../_components/DeleteReservation";
-
+import DeleteReservation from "./DeleteReservation";
 function ReservationCard({ booking }) {
   //odakle mu cabins u bookingu?
   const {

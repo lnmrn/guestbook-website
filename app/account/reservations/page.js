@@ -1,5 +1,9 @@
+import ReservationCard from "@/app/_components/ReservationCard";
 import Link from "next/link";
-import ReservationCard from "./ReservationCard";
+
+export const metadata = {
+  title: "Reservations",
+};
 
 function Page() {
   const bookings = [];
@@ -10,7 +14,7 @@ function Page() {
       </h2>
       {bookings?.length === 0 ? (
         <p className="text-lg">
-          You have no reservations yet. Check out{" "}
+          You have no reservations yet. Check out &rarr;{" "}
           <Link className="underline text-accent-500" href="/cabins">
             Our Accomodation
           </Link>
