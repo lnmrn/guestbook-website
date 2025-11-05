@@ -6,9 +6,9 @@ export const metadata = {
 
 function Page() {
   const cabins = [
-    { name: "Cabin001" },
-    { name: "Cabin002" },
-    { name: "Cabin003" },
+    { name: "Cabin001", id: 1 },
+    { name: "Cabin002", id: 2 },
+    { name: "Cabin003", id: 3 },
   ];
   return (
     <div className="mt-10">
