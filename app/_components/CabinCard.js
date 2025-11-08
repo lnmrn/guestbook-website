@@ -12,7 +12,7 @@ export default function CabinCard({ cabin }) {
           src={image}
           alt={`Image of Cabin ${cabin.name}`}
           fill
-          className="object-cover flex-1 border-r border-primary-800"
+          className="object-cover border-r border-primary-800"
         />
       </div>
       <div className="flex-grow">
