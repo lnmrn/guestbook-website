@@ -37,7 +37,7 @@ export default function CabinCard({ cabin }) {
                 </span>
               </>
             ) : (
-              <span className="text-3xl font-[350]">${regularPrice}</span>
+              <span className="text-2xl font-[350]">${regularPrice}</span>
             )}
             <span className="text-primary-200">/ night</span>
           </p>

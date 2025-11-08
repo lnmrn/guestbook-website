@@ -1,5 +1,6 @@
 import { getCabin } from "@/app/_lib/data-service";
 import {
+  BanknotesIcon,
   EyeSlashIcon,
   MapPinIcon,
   UserGroupIcon,
@@ -45,6 +46,26 @@ async function Page({ params }) {
               <EyeSlashIcon className="h-5 w-5 text-primary-600" />
               <span className="text-lg">
                 Privacy <span className="font-bold">100%</span> guaranteed
+              </span>
+            </li>
+            <li className="flex gap-3 items-center">
+              <BanknotesIcon className="h-5 w-5 text-primary-600" />
+              {/* could extract this into it's own component later for readability */}
+              <span className="text-lg">
+                {discount > 0 ? (
+                  <>
+                    <span className="text-2xl font-[350]">
+                      ${regularPrice - discount}
+                    </span>
+                    <span className="line-through font-semibold text-primary-600">
+                      {" "}
+                      (${regularPrice})
+                    </span>
+                  </>
+                ) : (
+                  <span className="text-2xl font-[350]">${regularPrice}</span>
+                )}{" "}
+                <span className="text-primary-200">/ night</span>
               </span>
             </li>
           </ul>
