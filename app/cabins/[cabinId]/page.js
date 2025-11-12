@@ -1,4 +1,4 @@
-import { getCabin } from "@/app/_lib/data-service";
+import { getCabin, getCabinsIds } from "@/app/_lib/data-service";
 import {
   BanknotesIcon,
   EyeSlashIcon,
@@ -10,6 +10,15 @@ import Image from "next/image";
 export async function generateMetadata({ params }) {
   const { name } = await getCabin(params.cabinId);
   return { title: `Cabin ${name}` };
+}
+
+export async function generateStaticParams() {
+  const cabinsIds = await getCabinsIds();
+  const ids = cabinsIds.map((obj) => ({
+    cabinId: String(obj.id),
+  }));
+  console.log(ids);
+  return ids;
 }
 
 async function Page({ params }) {

@@ -28,7 +28,7 @@ function RootLayout({ children }) {
           <main className="max-w-7xl mx-auto w-full">{children}</main>
         </div>
         <footer className="mx-auto py-3 z-10">
-          Copyright &#169; Dishpet 2025. All rights reserved.
+          Copyright &copy; Dishpet 2025. All rights reserved.
         </footer>
       </body>
     </html>
