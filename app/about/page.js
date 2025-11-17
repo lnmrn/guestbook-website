@@ -1,13 +1,19 @@
+import { getCabins } from "../_lib/data-service";
+
 import Image from "next/image";
 import about1 from "/public/about-1.jpg";
 import about2 from "/public/about-2.jpg";
 import Link from "next/link";
 
+export const revalidate = 86400;
+
 export const metadata = {
   title: "About",
 };
 
-function Page() {
+async function Page() {
+  const cabins = await getCabins();
+  const numCabins = cabins?.length;
   return (
     <div className="grid grid-cols-5 gap-x-24 gap-y-32 text-lg items-center mt-5">
       <div className="col-span-3">
@@ -28,6 +34,10 @@ function Page() {
             optional sign up for your potential guests. Any reservation made
             here is directly displayed in real time in our internal app to all
             employees that are signed in to use it.
+          </p>
+          <p>
+            {numCabins} luxory cabins provide a cozy base for your exploration
+            of the surrounding nature!
           </p>
           <p>
             Signed in users get to leave reviews, make suggestions, check their
