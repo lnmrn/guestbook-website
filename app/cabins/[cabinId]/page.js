@@ -5,6 +5,8 @@ import {
   MapPinIcon,
   UserGroupIcon,
 } from "@heroicons/react/24/solid";
+
+import TextExpander from "@/app/_components/TextExpander";
 import Image from "next/image";
 
 export async function generateMetadata({ params }) {
@@ -41,7 +43,10 @@ async function Page({ params }) {
           <h3 className="text-accent-100 font-black text-7xl mb-5 translate-x-[-33px] bg-primary-950 p-6 pb-1 ">
             Cabin {name}
           </h3>
-          <p className="text-lg text-primary-300 mb-10">{description}</p>
+
+          <p className="text-lg text-primary-300 mb-10">
+            <TextExpander>{description}</TextExpander>
+          </p>
 
           <ul className="flex flex-col gap-4 mb-7">
             <li className="flex gap-3 items-center">
