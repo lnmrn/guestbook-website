@@ -19,7 +19,7 @@ export async function generateStaticParams() {
   const ids = cabinsIds.map((obj) => ({
     cabinId: String(obj.id),
   }));
-  console.log(ids);
+
   return ids;
 }
 
