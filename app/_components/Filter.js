@@ -2,11 +2,14 @@
 
 import { usePathname, useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
+import FilterButton from "./FilterButton";
 
 function Filter() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
+
+  const activeFilter = searchParams.get("capacity") ?? "all";
 
   function handleFilter(filterValue) {
     const params = new URLSearchParams(searchParams);
@@ -16,30 +19,37 @@ function Filter() {
 
   return (
     <div className="border border-primary-800 flex">
-      <button
-        onClick={() => handleFilter("all")}
-        className="px-5 py-2 hover:bg-primary-700"
+      <FilterButton
+        filterValue="all"
+        onClick={handleFilter}
+        activeFilter={activeFilter}
       >
         All cabins
-      </button>
-      <button
-        onClick={() => handleFilter("small")}
-        className="px-5 py-2 hover:bg-primary-700"
+      </FilterButton>
+
+      <FilterButton
+        filterValue="small"
+        onClick={handleFilter}
+        activeFilter={activeFilter}
       >
         1&mdash;3 guests
-      </button>
-      <button
-        onClick={() => handleFilter("medium")}
-        className="px-5 py-2 hover:bg-primary-700"
+      </FilterButton>
+
+      <FilterButton
+        filterValue="medium"
+        onClick={handleFilter}
+        activeFilter={activeFilter}
       >
         4&mdash;7 guests
-      </button>
-      <button
-        onClick={() => handleFilter("large")}
-        className="px-5 py-2 hover:bg-primary-700"
+      </FilterButton>
+
+      <FilterButton
+        filterValue="large"
+        onClick={handleFilter}
+        activeFilter={activeFilter}
       >
         8&mdash;12 guests
-      </button>
+      </FilterButton>
     </div>
   );
 }
