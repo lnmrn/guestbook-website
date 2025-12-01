@@ -1,8 +1,6 @@
-import { getCabins } from "../_lib/data-service";
-import CabinCard from "./CabinCard";
+import CabinCard from "../_components/CabinCard";
 
-async function CabinList({ filterValue }) {
-  const cabins = await getCabins();
+function CabinList({ filterValue, cabins }) {
   if (!cabins.length) return null;
 
   //filtring for capacity, will change later
