@@ -1,13 +1,17 @@
+"use client";
+
 import Image from "next/image";
-import SelectCountry from "./SelectCountry";
 
 //temp import to avoid errors and can style and test
 import port from "public/port.png";
+import { useState } from "react";
 
-function UpdateProfileForm() {
+function UpdateProfileForm({ children }) {
+  const [example, setExample] = useState();
+
   //will change, now hardcoded for styling purposes
   const countryFlag = port;
-  const nationality = "portugal";
+
   return (
     <form className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col">
       <div className="space-y-2">
@@ -35,11 +39,7 @@ function UpdateProfileForm() {
             className="h-5 w-6 rounded-sm"
           />
         </div>
-        <SelectCountry
-          name="nationality"
-          id="nationality"
-          defaultCountry={nationality}
-        />
+        {children}
       </div>
 
       <div className="space-y-2">
