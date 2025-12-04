@@ -1,6 +1,4 @@
-import SelectCountry from "@/app/_components/SelectCountry";
 import UpdateProfileForm from "@/app/_components/UpdateProfileForm";
-import Image from "next/image";
 
 function Page() {
   return (
