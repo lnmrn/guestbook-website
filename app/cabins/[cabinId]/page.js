@@ -7,9 +7,9 @@ import {
 } from "@heroicons/react/24/solid";
 
 import TextExpander from "@/app/_components/TextExpander";
-import Image from "next/image";
-
 import DateSelector from "@/app/_components/DateSelector";
+import Image from "next/image";
+import ReservationForm from "@/app/_components/ReservationForm";
 
 export async function generateMetadata({ params }) {
   const { name } = await getCabin(params.cabinId);
@@ -97,8 +97,9 @@ async function Page({ params }) {
         <h2 className="text-5xl font-semibold text-center">
           Reserve Cabin {name} today. Pay on arrival.
         </h2>
-        <div>
+        <div className="grid grid-cols-2 border border-primary-800 min-h-[400px] mt-10 mb-5">
           <DateSelector />
+          <ReservationForm />
         </div>
       </div>
     </div>
