@@ -9,6 +9,8 @@ import {
 import TextExpander from "@/app/_components/TextExpander";
 import Image from "next/image";
 
+import DateSelector from "@/app/_components/DateSelector";
+
 export async function generateMetadata({ params }) {
   const { name } = await getCabin(params.cabinId);
   return { title: `Cabin ${name}` };
@@ -93,8 +95,11 @@ async function Page({ params }) {
 
       <div>
         <h2 className="text-5xl font-semibold text-center">
-          Reserve today. Pay on arrival.
+          Reserve Cabin {name} today. Pay on arrival.
         </h2>
+        <div>
+          <DateSelector />
+        </div>
       </div>
     </div>
   );
