@@ -94,7 +94,7 @@ async function Page({ params }) {
       </div>
 
       <div>
-        <h2 className="text-5xl font-semibold text-center">
+        <h2 className="text-5xl font-semibold text-center text-accent-400">
           Reserve Cabin {name} today. Pay on arrival.
         </h2>
         <div className="grid grid-cols-2 border border-primary-800 min-h-[400px] mt-10 mb-5">
