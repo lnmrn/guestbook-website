@@ -14,24 +14,26 @@ function isAlreadyBooked(range, datesArray) {
   );
 }
 
-function DateSelector() {
+function DateSelector({ cabin, settings, bookedDates }) {
+  const range = { from: null, to: null };
   //values temp hardcoded for development and testing
   const regularPrice = 23;
   const discount = 23;
   const numNights = 23;
   const cabinPrice = 23;
-  const range = { from: null, to: null };
+  // const { id, name, maxCapacity, regularPrice, discount, image, description } =
+  //   cabin;
   //reservation settings
-  const minBookingLen = 1;
-  const maxBookingLen = 23;
+  const { minBookingLength } = settings;
+  const { maxBookingLength } = settings;
 
   return (
     <div className="flex flex-col justify-between">
       <DayPicker
         animate
         mode="range"
-        min={minBookingLen + 1}
-        max={maxBookingLen}
+        min={minBookingLength + 1}
+        max={maxBookingLength}
         startMonth={new Date()}
         disabled={{ before: new Date() }}
         endMonth={new Date(2026, 11)}
