@@ -11,6 +11,8 @@ import DateSelector from "@/app/_components/DateSelector";
 import Image from "next/image";
 import ReservationForm from "@/app/_components/ReservationForm";
 import ReservationSection from "@/app/_components/ReservationSection";
+import { Suspense } from "react";
+import Spinner from "@/app/_components/Spinner";
 
 export async function generateMetadata({ params }) {
   const { name } = await getCabin(params.cabinId);
@@ -30,6 +32,7 @@ async function Page({ params }) {
   const cabin = await getCabin(params.cabinId);
   const { id, name, maxCapacity, regularPrice, discount, image, description } =
     cabin;
+
   return (
     <div className="max-w-6xl mx-auto mt-8">
       <div className="grid grid-cols-[3fr_4fr] gap-20 border border-primary-800 py-3 px-10 mb-24">
@@ -98,7 +101,9 @@ async function Page({ params }) {
         <h2 className="text-5xl font-semibold text-center text-accent-400">
           Reserve Cabin {name} today. Pay on arrival.
         </h2>
-        <ReservationSection />
+        <Suspense fallback={<Spinner />}>
+          <ReservationSection cabin={cabin} />
+        </Suspense>
       </div>
     </div>
   );
