@@ -1,4 +1,6 @@
-function ReservationForm({ cabin }) {
+"use client";
+
+function ReservationForm({ cabin, range }) {
   //hardcoded for design and testing
   const { maxCapacity } = cabin;
   return (
