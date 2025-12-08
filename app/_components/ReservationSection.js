@@ -1,5 +1,6 @@
 import { getBookedDatesByCabinId, getSettings } from "../_lib/data-service";
 import DateSelector from "./DateSelector";
+import RangeContainer from "./RangeContainer";
 import ReservationForm from "./ReservationForm";
 
 async function ReservationSection({ cabin }) {
@@ -9,14 +10,11 @@ async function ReservationSection({ cabin }) {
   ]);
 
   return (
-    <div className="grid grid-cols-2 border border-primary-800 min-h-[400px] mt-10 mb-5">
-      <DateSelector
-        settings={settings}
-        bookedDates={bookedDates}
-        cabin={cabin}
-      />
-      <ReservationForm cabin={cabin} />
-    </div>
+    <RangeContainer
+      settings={settings}
+      bookedDates={bookedDates}
+      cabin={cabin}
+    />
   );
 }
 
