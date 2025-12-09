@@ -2,6 +2,7 @@ import "@/app/_styles/globals.css";
 import { Josefin_Sans } from "next/font/google";
 
 import Header from "./_components/Header";
+import { ReservationProvider } from "./_components/ReservationContext";
 
 const josefin = Josefin_Sans({
   subsets: ["latin"],
@@ -25,7 +26,9 @@ function RootLayout({ children }) {
       >
         <Header />
         <div className="flex-1 px-8 grid">
-          <main className="max-w-7xl mx-auto w-full">{children}</main>
+          <ReservationProvider>
+            <main className="max-w-7xl mx-auto w-full">{children}</main>
+          </ReservationProvider>
         </div>
         <footer className="mx-auto py-3 z-10">
           Copyright &copy; Dishpet 2025. All rights reserved.
