@@ -26,7 +26,7 @@ async function Page() {
             accomodation representation, reviewing, Q&A and general booking
             process smooth, easy and available to everyone. This web application
             serves as a mock up for any company that would rely on
-            Guestbook&apos;s internal management application (Guestbook API).
+            Guestbook&#39;s internal management application (Guestbook API).
           </p>
           <p>
             Here we would allow you to display your luxory accomodation, with
@@ -79,10 +79,10 @@ async function Page() {
             dedication to creating a warm, welcoming environment.
           </p>
           <p>
-            Over the years, we&apos;ve maintained the essence of The Wild Oasis,
+            Over the years, we&#39;;ve maintained the essence of The Wild Oasis,
             blending the timeless beauty of the mountains with the personal
-            touch only a family business can offer. Here, you&apos;re not just a
-            guest; you&apos;re part of our extended family. So join us at The
+            touch only a family business can offer. Here, you&#39;;re not just a
+            guest; you&#39;;re part of our extended family. So join us at The
             Wild Oasis soon, where tradition meets tranquility, and every visit
             is like coming home.
           </p>
