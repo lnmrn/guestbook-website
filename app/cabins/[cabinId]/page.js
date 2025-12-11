@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import ReservationSection from "@/app/_components/ReservationSection";
 import Spinner from "@/app/_components/Spinner";
 import Cabin from "@/app/_components/Cabin";
+import Link from "next/link";
 
 export async function generateMetadata({ params }) {
   const { name } = await getCabin(params.cabinId);
@@ -24,6 +25,12 @@ async function Page({ params }) {
 
   return (
     <div className="max-w-6xl mx-auto mt-8">
+      <Link
+        href={"/cabins"}
+        className="mb-[20px] border-b border-b-accent-400 text-accent-400"
+      >
+        &#8592; Back
+      </Link>
       <Cabin cabin={cabin} />
 
       <div>
