@@ -3,6 +3,8 @@ import { Josefin_Sans } from "next/font/google";
 
 import Header from "./_components/Header";
 import { ReservationProvider } from "./_components/ReservationContext";
+import { AuthProvider } from "./_components/AuthContext";
+import { auth } from "./_lib/auth";
 
 const josefin = Josefin_Sans({
   subsets: ["latin"],
@@ -18,18 +20,22 @@ export const metadata = {
     "Some nice description about your hotel/hostel or similar service.",
 };
 
+const session = await auth();
+
 function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
         className={`${josefin.className} bg-primary-950 text-primary-100 min-h-screen flex flex-col`}
       >
-        <Header />
-        <div className="flex-1 px-8 grid">
-          <ReservationProvider>
-            <main className="max-w-7xl mx-auto w-full">{children}</main>
-          </ReservationProvider>
-        </div>
+        <AuthProvider session={session}>
+          <Header />
+          <div className="flex-1 px-8 grid">
+            <ReservationProvider>
+              <main className="max-w-7xl mx-auto w-full">{children}</main>
+            </ReservationProvider>
+          </div>
+        </AuthProvider>
         <footer className="mx-auto py-3 z-10">
           Copyright &copy; Dishpet 2025. All rights reserved.
         </footer>
