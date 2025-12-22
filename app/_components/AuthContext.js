@@ -1,10 +1,10 @@
 "use client";
 import { createContext, useContext } from "react";
 
-const AuthContext = createContext(null);
+const AuthContext = createContext();
 
 function AuthProvider({ children, session }) {
-  console.log("Context here:", session.user);
+  console.log("Context:", session.user);
   return (
     <AuthContext.Provider value={{ session }}>{children}</AuthContext.Provider>
   );

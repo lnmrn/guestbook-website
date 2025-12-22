@@ -20,9 +20,8 @@ export const metadata = {
     "Some nice description about your hotel/hostel or similar service.",
 };
 
-const session = await auth();
-
-function RootLayout({ children }) {
+async function RootLayout({ children }) {
+  const session = await auth();
   return (
     <html lang="en">
       <body
