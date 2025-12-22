@@ -1,10 +1,11 @@
 "use client";
 import Link from "next/link";
 import { useAuthContext } from "./AuthContext";
+import Image from "next/image";
 
 function Navigation() {
-  const session = useAuthContext();
-  console.log(session);
+  const { session } = useAuthContext();
+  console.log("Navigation", session);
   return (
     <nav className="z-10 text-xl">
       <ul className="flex gap-16 items-center sm:gap-6">
@@ -30,12 +31,28 @@ function Navigation() {
           </Link>
         </li>
         <li>
-          <Link
-            href="/account"
-            className="hover:text-accent-400 transition-colors"
-          >
-            Guest area
-          </Link>
+          {session?.user?.image ? (
+            <Link
+              href="/account"
+              className="hover:text-accent-400 transition-colors"
+            >
+              <div className="flex gap-2 items-center">
+                Guest area
+                <img
+                  src={session.user.image}
+                  alt="User avatar"
+                  className="h-7 rounded-full"
+                />
+              </div>
+            </Link>
+          ) : (
+            <Link
+              href="/account"
+              className="hover:text-accent-400 transition-colors"
+            >
+              Guest area
+            </Link>
+          )}
         </li>
       </ul>
     </nav>
