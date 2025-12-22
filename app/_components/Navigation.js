@@ -1,11 +1,9 @@
 "use client";
 import Link from "next/link";
 import { useAuthContext } from "./AuthContext";
-import Image from "next/image";
 
 function Navigation() {
   const { session } = useAuthContext();
-  console.log("Navigation", session);
   return (
     <nav className="z-10 text-xl">
       <ul className="flex gap-16 items-center sm:gap-6">
@@ -40,7 +38,7 @@ function Navigation() {
                 Guest area
                 <img
                   src={session.user.image}
-                  alt="User avatar"
+                  alt={session.user.name}
                   className="h-7 rounded-full"
                 />
               </div>

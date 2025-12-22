@@ -4,7 +4,6 @@ import { createContext, useContext } from "react";
 const AuthContext = createContext();
 
 function AuthProvider({ children, session }) {
-  console.log("Context:", session.user);
   return (
     <AuthContext.Provider value={{ session }}>{children}</AuthContext.Provider>
   );
