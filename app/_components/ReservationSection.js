@@ -1,3 +1,4 @@
+import { auth } from "../_lib/auth";
 import { getBookedDatesByCabinId, getSettings } from "../_lib/data-service";
 import DateSelector from "./DateSelector";
 import ReservationForm from "./ReservationForm";
@@ -7,6 +8,7 @@ async function ReservationSection({ cabin }) {
     getSettings(),
     getBookedDatesByCabinId(cabin.id),
   ]);
+  const session = await auth();
 
   return (
     <div className="grid grid-cols-2 border border-primary-800 min-h-[400px] mt-10 mb-5">
@@ -15,7 +17,7 @@ async function ReservationSection({ cabin }) {
         bookedDates={bookedDates}
         cabin={cabin}
       />
-      <ReservationForm cabin={cabin} />
+      {session?.user && <ReservationForm cabin={cabin} />}
     </div>
   );
 }
