@@ -1,7 +1,6 @@
 "use client";
 
 function ReservationForm({ cabin, user }) {
-  //hardcoded for design and testing
   const { maxCapacity } = cabin;
   return (
     <div className="scale-[1.01]">
@@ -9,7 +8,6 @@ function ReservationForm({ cabin, user }) {
         <p>Logged in as {user.name}</p>
         <div className="flex gap-4 items-center">
           <img
-            // Important to display google profile images
             referrerPolicy="no-referrer"
             className="h-8 rounded-full"
             src={user.image}
