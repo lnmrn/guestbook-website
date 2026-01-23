@@ -45,8 +45,12 @@ function Navigation() {
               <div className="flex gap-2 items-center">
                 Guest area
                 <img
-                  src={session.user.image}
+                  src={session.user.image || "/default-avatar.jpg"}
                   alt={session.user.name}
+                  onError={(e) => {
+                    e.currentTarget.onerror = null;
+                    e.currentTarget.src = "/default-profile.jpg";
+                  }}
                   className="h-7 rounded-full"
                 />
               </div>
