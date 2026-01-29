@@ -4,6 +4,15 @@ import { useAuthContext } from "./AuthContext";
 
 function Navigation() {
   const { session } = useAuthContext();
+
+  //a minor fix for the default img not rendering in some cases
+  const avatar =
+    session?.user?.image &&
+    session?.user?.image !== "null" &&
+    session?.user?.image !== "undefined"
+      ? session?.user?.image
+      : "/default-profile.jpg";
+
   return (
     <nav className="z-10 text-xl">
       <ul className="flex gap-16 items-center sm:gap-6">
@@ -45,12 +54,8 @@ function Navigation() {
               <div className="flex gap-2 items-center">
                 Guest area
                 <img
-                  src={session.user.image || "/default-avatar.jpg"}
+                  src={session.user.image || avatar}
                   alt={session.user.name}
-                  onError={(e) => {
-                    e.currentTarget.onerror = null;
-                    e.currentTarget.src = "/default-profile.jpg";
-                  }}
                   className="h-7 rounded-full"
                 />
               </div>
