@@ -1,6 +1,10 @@
 import Link from "next/link";
 import SignInButton from "../_components/SignInButton";
 
+export const metadata = {
+  title: "Sign In",
+};
+
 export default function Page() {
   return (
     <div className="relative w-full flex items-start justify-center">
