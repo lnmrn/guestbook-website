@@ -1,17 +1,20 @@
 "use client";
 import Link from "next/link";
 import { useAuthContext } from "./AuthContext";
+import { useState } from "react";
 
 function Navigation() {
   const { session } = useAuthContext();
 
   //a minor fix for the default img not rendering in some cases
-  const avatar =
+  const initialAvatar =
     session?.user?.image &&
     session?.user?.image !== "null" &&
     session?.user?.image !== "undefined"
       ? session?.user?.image
       : "/default-profile.jpg";
+
+  const [imgSrc, setImgSrc] = useState(initialAvatar);
 
   return (
     <nav className="z-10 text-xl">
@@ -46,7 +49,7 @@ function Navigation() {
           </Link>
         </li>
         <li>
-          {session?.user?.image ? (
+          {session ? (
             <Link
               href="/account"
               className="hover:text-accent-400 transition-colors"
@@ -54,9 +57,13 @@ function Navigation() {
               <div className="flex gap-2 items-center">
                 Guest area
                 <img
-                  src={session.user.image || avatar}
-                  alt={session.user.name}
                   className="h-7 rounded-full"
+                  src={imgSrc}
+                  key={session.user?.image}
+                  alt={session.user.name || "User avatar"}
+                  onError={() => {
+                    setImgSrc("/default-profile.jpg");
+                  }}
                 />
               </div>
             </Link>
