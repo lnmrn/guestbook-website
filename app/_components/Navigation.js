@@ -6,15 +6,9 @@ import { useState } from "react";
 function Navigation() {
   const { session } = useAuthContext();
 
-  //a minor fix for the default img not rendering in some cases
-  const initialAvatar =
-    session?.user?.image &&
-    session?.user?.image !== "null" &&
-    session?.user?.image !== "undefined"
-      ? session?.user?.image
-      : "/default-profile.jpg";
+  const validAvatar = session?.user?.image;
 
-  const [imgSrc, setImgSrc] = useState(initialAvatar);
+  const [hasError, setHasError] = useState(false);
 
   return (
     <nav className="z-10 text-xl">
@@ -58,11 +52,11 @@ function Navigation() {
                 Guest area
                 <img
                   className="h-7 rounded-full"
-                  src={imgSrc}
-                  key={session.user?.image}
+                  src={hasError ? "default-profile.jpg" : validAvatar}
+                  key={validAvatar}
                   alt={session.user.name || "User avatar"}
                   onError={() => {
-                    setImgSrc("/default-profile.jpg");
+                    setHasError(true);
                   }}
                 />
               </div>
