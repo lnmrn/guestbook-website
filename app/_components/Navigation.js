@@ -6,7 +6,11 @@ import { useState } from "react";
 function Navigation() {
   const { session } = useAuthContext();
 
-  const validAvatar = session?.user?.image;
+  const validAvatar = session?.user?.image
+    ? `${session.user.image}?v=${session.user.image}`
+    : null;
+
+  console.log(validAvatar);
 
   const [hasError, setHasError] = useState(false);
 
@@ -52,7 +56,11 @@ function Navigation() {
                 Guest area
                 <img
                   className="h-7 rounded-full"
-                  src={hasError ? "default-profile.jpg" : validAvatar}
+                  src={
+                    hasError || !validAvatar
+                      ? "/default-profile.jpg"
+                      : validAvatar
+                  }
                   key={validAvatar}
                   alt={session.user.name || "User avatar"}
                   onError={() => {
