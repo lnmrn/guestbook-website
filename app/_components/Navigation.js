@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useAuthContext } from "./AuthContext";
 import { useState } from "react";
+import Image from "next/image";
 
 function Navigation() {
   const { session } = useAuthContext();
@@ -54,13 +55,17 @@ function Navigation() {
             >
               <div className="flex gap-2 items-center">
                 Guest area
-                <img
-                  className="h-7 rounded-full"
-                  src={
-                    hasError || !validAvatar
-                      ? "/default-profile.jpg"
-                      : validAvatar
-                  }
+                <Image
+                  className="rounded-full"
+                  width={30}
+                  height={30}
+                  priority={false}
+                  src={hasError ? "/default-profile.jpg" : session.user.image}
+                  // src={
+                  //   hasError || !validAvatar
+                  //     ? "/default-profile.jpg"
+                  //     : validAvatar
+                  // }
                   key={validAvatar}
                   alt={session.user.name || "User avatar"}
                   onError={() => {
