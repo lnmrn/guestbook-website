@@ -11,8 +11,6 @@ function Navigation() {
     ? `${session.user.image}?v=${session.user.image}`
     : null;
 
-  console.log(validAvatar);
-
   const [hasError, setHasError] = useState(false);
 
   return (
