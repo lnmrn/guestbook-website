@@ -4,10 +4,9 @@ import Image from "next/image";
 
 //temp import to avoid errors and can style and test
 import port from "public/port.png";
-import { useState } from "react";
 
-function UpdateProfileForm({ children }) {
-  const [example, setExample] = useState();
+function UpdateProfileForm({ children, guestData }) {
+  const { fullName, email, nationality, nationalID, countryFlag } = guestData;
 
   //will change, now hardcoded for styling purposes
   const defaultCountryFlag = port;
@@ -18,6 +17,7 @@ function UpdateProfileForm({ children }) {
         <label htmlFor="fullName">Full name</label>
         <input
           disabled
+          defaultValue={fullName}
           className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
         />
       </div>
@@ -26,6 +26,7 @@ function UpdateProfileForm({ children }) {
         <label htmlFor="email">Email address</label>
         <input
           disabled
+          defaultValue={email}
           className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
         />
       </div>
@@ -34,7 +35,7 @@ function UpdateProfileForm({ children }) {
         <div className="flex items-center justify-between">
           <label htmlFor="nationality">Where are you from? </label>
           <Image
-            src={defaultCountryFlag}
+            src={countryFlag}
             alt="Country flag"
             className="h-5 w-6 rounded-sm"
           />
@@ -45,6 +46,7 @@ function UpdateProfileForm({ children }) {
       <div className="space-y-2">
         <label htmlFor="nationalID">National ID number</label>
         <input
+          defaultValue={nationalID}
           name="nationalID"
           className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
         />

@@ -15,12 +15,12 @@ async function Page() {
   const guestData = isGuest ? await getGuest(session?.user?.email) : null;
   console.log(guestData);
 
-  //temp value
-  const nationality = "portugal";
+  //temp value portugal
+  const nationality = guestData?.nationality ?? "portugal";
 
   return (
     <div>
-      {isGuest ? (
+      {isGuest && guestData ? (
         <div>
           <h2 className="font-semibold text-2xl text-accent-400 mb-4">
             Update your profile
@@ -30,11 +30,11 @@ async function Page() {
             Providing the following information will make your check-in process
             faster and smoother. See you soon!
           </p>
-          <UpdateProfileForm>
+          <UpdateProfileForm guestData={guestData}>
             <SelectCountry
               name="nationality"
               id="nationality"
-              defaultCountry={isGuest ? guestData.nationality : nationality}
+              defaultCountry={nationality}
             />
           </UpdateProfileForm>
         </div>
