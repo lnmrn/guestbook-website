@@ -13,6 +13,7 @@ async function SelectCountry(name, id, defaultCountry) {
     >
       <option value="">Select country...</option>
       {countries.map((country) => (
+        // i need both flag and name in one string to split it later in an action
         <option key={country.name} value={`${country.name}%${country.flag}`}>
           {country.name}
         </option>
