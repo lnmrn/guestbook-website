@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { updateForm } from "../_lib/actions";
+import FormButton from "./FormButton";
 
 function UpdateProfileForm({ children, guestData }) {
   const { fullName, email, nationalID, countryFlag } = guestData;
@@ -53,9 +54,7 @@ function UpdateProfileForm({ children, guestData }) {
       </div>
 
       <div className="flex justify-end items-center gap-6">
-        <button className="bg-accent-500 px-8 py-4 text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300">
-          Update profile
-        </button>
+        <FormButton />
       </div>
     </form>
   );
