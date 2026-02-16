@@ -13,7 +13,6 @@ async function Page() {
   //new guest is only ever created upon new booking!
   const isGuest = session?.guestId !== null;
   const guestData = isGuest ? await getGuest(session?.user?.email) : null;
-  console.log(guestData);
 
   //temp value portugal
   const nationality = guestData?.nationality ?? "portugal";
