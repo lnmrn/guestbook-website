@@ -38,6 +38,8 @@ function UpdateProfileForm({ children, guestData }) {
           <Image
             src={countryFlag}
             alt="Country flag"
+            width={5}
+            height={5}
             className="h-5 w-6 rounded-sm"
           />
         </div>
