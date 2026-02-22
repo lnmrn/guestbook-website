@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import DeleteReservation from "./DeleteReservation";
 function ReservationCard({ booking }) {
-  //odakle mu cabins u bookingu?
   const {
     id,
     guestId,
@@ -64,18 +63,18 @@ function ReservationCard({ booking }) {
           </p>
         </div>
       </div>
-      {!isPast(startDate) &&
-      <div className="flex flex-col border-l border-primary-800 w-[100px]">
-        
-        <Link
-          href={`/account/reservations/edit/${id}`}
-          className="group flex items-center gap-2 uppercase text-xs font-bold text-primary-300 border-b border-primary-800 flex-grow px-3 hover:bg-accent-600 transition-colors hover:text-primary-900"
-        >
-          <PencilSquareIcon className="h-5 w-5 text-primary-600 group-hover:text-primary-800 transition-colors" />
-          <span className="mt-1">Edit</span>
-        </Link>
-        <DeleteReservation bookingId={id} />
-      </div>}
+      {!isPast(startDate) && (
+        <div className="flex flex-col border-l border-primary-800 w-[100px]">
+          <Link
+            href={`/account/reservations/edit/${id}`}
+            className="group flex items-center gap-2 uppercase text-xs font-bold text-primary-300 border-b border-primary-800 flex-grow px-3 hover:bg-accent-600 transition-colors hover:text-primary-900"
+          >
+            <PencilSquareIcon className="h-5 w-5 text-primary-600 group-hover:text-primary-800 transition-colors" />
+            <span className="mt-1">Edit</span>
+          </Link>
+          <DeleteReservation bookingId={id} />
+        </div>
+      )}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { getCountries } from "../_lib/data-service";
 
-async function SelectCountry(name, id, defaultCountry) {
+async function SelectCountry({ name, id, defaultCountry }) {
   const countries = await getCountries();
   const flag =
     countries.find((country) => country.name === defaultCountry)?.flag ?? "";

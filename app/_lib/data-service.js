@@ -104,6 +104,20 @@ export async function getBookings(guestId) {
   return data;
 }
 
+export async function getGuestIdByBookingId(id) {
+  const { data, error } = await supabase
+    .from("bookings")
+    .select("guestId")
+    .eq("id", id)
+    .single();
+
+  if (error) {
+    console.error(error);
+  }
+
+  return data.guestId;
+}
+
 export async function getBookedDatesByCabinId(cabinId) {
   let today = new Date();
   today.setUTCHours(0, 0, 0, 0);
