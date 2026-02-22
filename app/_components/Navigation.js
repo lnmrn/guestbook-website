@@ -59,11 +59,6 @@ function Navigation() {
                   height={30}
                   priority={false}
                   src={hasError ? "/default-profile.jpg" : session.user.image}
-                  // src={
-                  //   hasError || !validAvatar
-                  //     ? "/default-profile.jpg"
-                  //     : validAvatar
-                  // }
                   key={validAvatar}
                   alt={session.user.name || "User avatar"}
                   onError={() => {

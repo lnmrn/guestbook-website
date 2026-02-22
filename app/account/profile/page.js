@@ -14,8 +14,9 @@ async function Page() {
   const isGuest = session?.guestId !== null;
   const guestData = isGuest ? await getGuest(session?.user?.email) : null;
 
-  //temp value portugal
-  const nationality = guestData?.nationality ?? "portugal";
+  const nationality = guestData?.nationality ?? "";
+
+  console.log(guestData);
 
   return (
     <div>
