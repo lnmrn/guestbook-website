@@ -63,5 +63,6 @@ export async function updateReservation(id, formData) {
 
   const updateFields = { numGuests, notes };
   await updateBooking(id, updateFields);
+  revalidatePath(`/account/reservations/edit/${id}`);
   redirect(`/account/reservations`);
 }
