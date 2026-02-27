@@ -146,6 +146,27 @@ export async function getBookedDatesByCabinId(cabinId) {
 
   return bookedDates;
 }
+export async function getBookingWithMaxCapacity(reservationId) {
+  const { data, error } = await supabase
+    .from("bookings")
+    .select(
+      `
+      *,
+      cabins (
+        maxCapacity
+      )
+    `,
+    )
+    .eq("id", reservationId)
+    .single();
+
+  if (error) {
+    console.error(error);
+    throw new Error("Booking could not be loaded");
+  }
+
+  return data;
+}
 
 export async function getSettings() {
   const { data, error } = await supabase.from("settings").select("*").single();
