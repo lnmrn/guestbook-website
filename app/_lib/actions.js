@@ -8,6 +8,7 @@ import {
   updateBooking,
   updateGuest,
 } from "./data-service";
+import { redirect } from "next/navigation";
 
 export async function signInAction() {
   await signIn("google", { redirectTo: "/account" });
@@ -51,9 +52,16 @@ export async function deleteReservation(id) {
 export async function updateReservation(id, formData) {
   const session = await auth();
   if (!session) throw new Error("Unauthorized action.");
+  const bookingGuestId = await getGuestIdByBookingId(id);
+  if (bookingGuestId !== session.guestId)
+    throw new Error(
+      "Unauthorized action - you can only edit your own bookings.",
+    );
+
   const numGuests = Number(formData.get("numGuests"));
-  const notes = formData.get("notes");
+  const notes = formData.get("notes").slice(0, 1000);
+
   const updateFields = { numGuests, notes };
   await updateBooking(id, updateFields);
-  revalidatePath(`/account/reservations/edit/${id}`);
+  redirect(`/account/reservations`);
 }

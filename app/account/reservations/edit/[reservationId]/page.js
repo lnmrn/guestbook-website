@@ -3,13 +3,12 @@ import { updateReservation } from "@/app/_lib/actions";
 import UpdateReservationButton from "@/app/_components/UpdateReservationButton";
 
 export default async function Page({ params }) {
-  //console.log(params);
-
   const reservationId = params?.reservationId;
   const booking = params
     ? await getBookingWithMaxCapacity(reservationId)
     : null;
   const maxCapacity = booking?.cabins.maxCapacity ?? 0;
+  const { numGuests, notes } = booking;
 
   return (
     <div>
@@ -21,11 +20,11 @@ export default async function Page({ params }) {
         action={updateReservation.bind(null, reservationId)}
         className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col"
       >
-        <input type="hidden" name="reservationId" value={reservationId} />
         <div className="space-y-2">
           <label htmlFor="numGuests">How many guests?</label>
           <select
             disabled={maxCapacity === 0}
+            defaultValue={numGuests}
             name="numGuests"
             id="numGuests"
             className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
@@ -48,6 +47,7 @@ export default async function Page({ params }) {
           </label>
           <textarea
             maxLength={1000}
+            defaultValue={notes}
             name="notes"
             className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
           />
