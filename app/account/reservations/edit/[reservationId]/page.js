@@ -1,7 +1,15 @@
-export default function Page() {
-  // CHANGE
-  const reservationId = 23;
-  const maxCapacity = 23;
+import { getBookingWithMaxCapacity } from "@/app/_lib/data-service";
+import { updateReservation } from "@/app/_lib/actions";
+import UpdateReservationButton from "@/app/_components/UpdateReservationButton";
+
+export default async function Page({ params }) {
+  //console.log(params);
+
+  const reservationId = params?.reservationId;
+  const booking = params
+    ? await getBookingWithMaxCapacity(reservationId)
+    : null;
+  const maxCapacity = booking?.cabins.maxCapacity ?? 0;
 
   return (
     <div>
@@ -9,10 +17,15 @@ export default function Page() {
         Edit Reservation #{reservationId}
       </h2>
 
-      <form className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col">
+      <form
+        action={updateReservation.bind(null, reservationId)}
+        className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col"
+      >
+        <input type="hidden" name="reservationId" value={reservationId} />
         <div className="space-y-2">
           <label htmlFor="numGuests">How many guests?</label>
           <select
+            disabled={maxCapacity === 0}
             name="numGuests"
             id="numGuests"
             className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
@@ -30,19 +43,18 @@ export default function Page() {
         </div>
 
         <div className="space-y-2">
-          <label htmlFor="observations">
+          <label htmlFor="notes">
             Anything we should know about your stay?
           </label>
           <textarea
-            name="observations"
+            maxLength={1000}
+            name="notes"
             className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
           />
         </div>
 
         <div className="flex justify-end items-center gap-6">
-          <button className="bg-accent-500 px-8 py-4 text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300">
-            Update reservation
-          </button>
+          <UpdateReservationButton />
         </div>
       </form>
     </div>

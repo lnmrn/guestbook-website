@@ -5,6 +5,7 @@ import { auth, signIn, signOut } from "./auth";
 import {
   deleteBooking,
   getGuestIdByBookingId,
+  updateBooking,
   updateGuest,
 } from "./data-service";
 
@@ -45,4 +46,14 @@ export async function deleteReservation(id) {
     );
   await deleteBooking(id);
   revalidatePath("/account/reservations");
+}
+
+export async function updateReservation(id, formData) {
+  const session = await auth();
+  if (!session) throw new Error("Unauthorized action.");
+  const numGuests = Number(formData.get("numGuests"));
+  const notes = formData.get("notes");
+  const updateFields = { numGuests, notes };
+  await updateBooking(id, updateFields);
+  revalidatePath(`/account/reservations/edit/${id}`);
 }

@@ -4,6 +4,7 @@ import { format, isPast, isToday } from "date-fns";
 import Image from "next/image";
 import Link from "next/link";
 import DeleteReservation from "./DeleteReservation";
+
 function ReservationCard({ booking }) {
   const {
     id,
