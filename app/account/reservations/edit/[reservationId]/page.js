@@ -1,6 +1,6 @@
 import { getBookingWithMaxCapacity } from "@/app/_lib/data-service";
 import { updateReservation } from "@/app/_lib/actions";
-import UpdateReservationButton from "@/app/_components/UpdateReservationButton";
+import FormButton from "@/app/_components/FormButton";
 
 export default async function Page({ params }) {
   const reservationId = params?.reservationId;
@@ -54,7 +54,7 @@ export default async function Page({ params }) {
         </div>
 
         <div className="flex justify-end items-center gap-6">
-          <UpdateReservationButton />
+          <FormButton>Update reservation</FormButton>
         </div>
       </form>
     </div>
