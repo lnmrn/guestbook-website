@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import { updateForm } from "../_lib/actions";
 import FormButton from "./FormButton";
