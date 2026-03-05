@@ -14,7 +14,7 @@ function ReservationReminder() {
           <ClockIcon className="h-5 w-5" />
         </span>{" "}
         Don&#39;t forget to reserve your dates <br /> from{" "}
-        {format(new Date(range.from), "MMM dd yyyy")} to{""}
+        {format(new Date(range.from), "MMM dd yyyy")} to {""}
         {format(new Date(range.to), "MMM dd yyyy")}
       </p>
       <button className="rounded-full p-1 hover:bg-accent-600 transition-all">
