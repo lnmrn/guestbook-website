@@ -122,7 +122,7 @@ export async function getBookedDatesByCabinId(cabinId) {
   let today = new Date();
   today.setUTCHours(0, 0, 0, 0);
   today = today.toISOString();
-  s;
+
   const { data, error } = await supabase
     .from("bookings")
     .select("*")
