@@ -1,7 +1,16 @@
 "use client";
 
+import { differenceInDays } from "date-fns";
+import { useReservationContext } from "./ReservationContext";
+
 function ReservationForm({ cabin, user }) {
+  const { range } = useReservationContext();
   const { maxCapacity } = cabin;
+
+  const startDate = range?.to;
+  const endDate = range?.from;
+  const numNights = range ? differenceInDays(range.to, range.from) : 0;
+
   return (
     <div className="scale-[1.01]">
       <div className="bg-primary-800 text-primary-300 px-16 py-2 flex justify-between items-center">
@@ -38,12 +47,12 @@ function ReservationForm({ cabin, user }) {
         </div>
 
         <div className="space-y-2">
-          <label htmlFor="observations">
+          <label htmlFor="notes">
             Anything we should know about your stay?
           </label>
           <textarea
-            name="observations"
-            id="observations"
+            name="notes"
+            id="notes"
             placeholder="Any pets, allergies, special requirements, etc.?"
             className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
           />

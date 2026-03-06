@@ -15,7 +15,6 @@ function DateSelector({ cabin, settings, bookedDates }) {
   const { id, name, maxCapacity, regularPrice, discount, image, description } =
     cabin;
 
-  //values temp hardcoded for development and testing
   const numNights = range ? differenceInDays(range.to, range.from) : 0;
   const cabinPrice = numNights * (regularPrice - discount);
 
