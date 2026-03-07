@@ -66,3 +66,9 @@ export async function updateReservation(id, formData) {
   revalidatePath(`/account/reservations/edit/${id}`);
   redirect(`/account/reservations`);
 }
+
+//while creating a new booking, we will also create a new guest if the logged in user is not a guest already
+//we know this because of how we set up guestId in the auth.js - it will be null if the user is not a guest already
+export async function createBooking(bookingData, formData) {
+  console.log(formData);
+}

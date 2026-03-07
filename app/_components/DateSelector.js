@@ -12,8 +12,7 @@ import { useReservationContext } from "./ReservationContext";
 
 function DateSelector({ cabin, settings, bookedDates }) {
   const { range, setRange, resetRange } = useReservationContext();
-  const { id, name, maxCapacity, regularPrice, discount, image, description } =
-    cabin;
+  const { regularPrice, discount } = cabin;
 
   const numNights = range ? differenceInDays(range.to, range.from) : 0;
   const cabinPrice = numNights * (regularPrice - discount);
