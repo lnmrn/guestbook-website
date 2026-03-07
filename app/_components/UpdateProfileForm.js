@@ -33,13 +33,15 @@ function UpdateProfileForm({ children, guestData }) {
       <div className="space-y-2">
         <div className="flex items-center justify-between">
           <label htmlFor="nationality">Where are you from? </label>
-          <Image
-            src={countryFlag}
-            alt="Country flag"
-            width={5}
-            height={5}
-            className="h-5 w-6 rounded-sm"
-          />
+          {countryFlag && (
+            <Image
+              src={countryFlag}
+              alt="Country flag"
+              width={5}
+              height={5}
+              className="h-5 w-6 rounded-sm"
+            />
+          )}
         </div>
         {children}
       </div>
