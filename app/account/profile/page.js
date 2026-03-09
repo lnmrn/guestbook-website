@@ -9,7 +9,7 @@ async function Page() {
 
   //if the logged in user booked before, their data will be in the database
   //we will then merely pass that data as placeholders to the form
-  //if the response is null, then the user never booked before and we will directed to do so.
+  //if the response is null, then the user never booked before and we will direct to do so.
   //new guest is only ever created upon new booking!
   const isGuest = session?.guestId !== null;
   const guestData = isGuest ? await getGuest(session?.user?.email) : null;

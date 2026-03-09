@@ -3,12 +3,17 @@
 import { revalidatePath } from "next/cache";
 import { auth, signIn, signOut } from "./auth";
 import {
+  createBooking,
+  createGuest,
   deleteBooking,
+  getCabin,
+  getGuest,
   getGuestIdByBookingId,
   updateBooking,
   updateGuest,
 } from "./data-service";
 import { redirect } from "next/navigation";
+import { differenceInDays, startOfDay } from "date-fns";
 
 export async function signInAction() {
   await signIn("google", { redirectTo: "/account" });
@@ -69,6 +74,56 @@ export async function updateReservation(id, formData) {
 
 //while creating a new booking, we will also create a new guest if the logged in user is not a guest already
 //we know this because of how we set up guestId in the auth.js - it will be null if the user is not a guest already
-export async function createBooking(bookingData, formData) {
-  console.log(formData);
+export async function createBookingWithGuest(bookingData, formData) {
+  const session = await auth();
+  if (!session) throw new Error("Unauthorized action.");
+  const { startDate, endDate, cabinId } = bookingData;
+
+  const cabin = await getCabin(cabinId);
+
+  const numNights = differenceInDays(
+    startOfDay(endDate),
+    startOfDay(startDate),
+  );
+
+  const cabinPrice = numNights * (cabin.regularPrice - cabin.discount);
+
+  const numGuests = Number(formData.get("numGuests"));
+  const notes = formData.get("notes").slice(0, 1000);
+
+  const email = session.user.email;
+
+  let guestId = session.guestId;
+  let guest;
+
+  if (guestId === null) {
+    await createGuest({ email, fullName: session.user.name });
+    guest = await getGuest(email);
+  }
+
+  guest = await getGuest(email);
+
+  if (!guest) {
+    throw new Error("Failed to create or retrieve guest.");
+  }
+
+  const newBooking = {
+    guestId: guest.id,
+    cabinId,
+    numGuests,
+    startDate,
+    endDate,
+    numNights,
+    notes,
+    extrasPrice: 0,
+    cabinPrice,
+    totalPrice: cabinPrice,
+    isPaid: false,
+    hasBreakfast: false,
+    status: "unconfirmed",
+  };
+  console.log(newBooking);
+  await createBooking(newBooking);
+  revalidatePath("/", "layout");
+  redirect("/account/reservations");
 }
