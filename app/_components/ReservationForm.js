@@ -2,6 +2,7 @@
 
 import { useReservationContext } from "./ReservationContext";
 import { createBookingWithGuest } from "../_lib/actions";
+import FormButton from "./FormButton";
 
 function ReservationForm({ cabin, user }) {
   const { range } = useReservationContext();
@@ -68,9 +69,9 @@ function ReservationForm({ cabin, user }) {
 
         <div className="flex justify-end items-center gap-6">
           <p className="text-primary-300 text-base">Start by selecting dates</p>
-          <button className="bg-accent-500 px-8 py-4 text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300">
+          <FormButton className="bg-accent-500 px-8 py-4 text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300">
             Reserve now
-          </button>
+          </FormButton>
         </div>
       </form>
     </div>

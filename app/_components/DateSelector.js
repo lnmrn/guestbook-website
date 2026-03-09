@@ -1,12 +1,7 @@
 "use client";
 
 import "react-day-picker/dist/style.css";
-import {
-  differenceInDays,
-  isPast,
-  isSameDay,
-  isWithinInterval,
-} from "date-fns";
+import { differenceInDays, isPast, isSameDay } from "date-fns";
 import { DayPicker } from "react-day-picker";
 import { useReservationContext } from "./ReservationContext";
 
@@ -28,7 +23,7 @@ function DateSelector({ cabin, settings, bookedDates }) {
         mode="range"
         onSelect={setRange}
         selected={range}
-        min={minBookingLength + 1}
+        min={minBookingLength}
         max={maxBookingLength}
         startMonth={new Date()}
         disabled={(currDate) =>
@@ -69,7 +64,7 @@ function DateSelector({ cabin, settings, bookedDates }) {
           ) : null}
         </div>
 
-        {range.from || range.to ? (
+        {range?.from || range?.to ? (
           <button
             className="border border-primary-800 py-2 px-4 text-sm font-semibold"
             onClick={resetRange}
