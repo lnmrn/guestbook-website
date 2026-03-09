@@ -5,15 +5,14 @@ import { getGuest } from "./data-service";
 const authConfig = {
   providers: [Google],
   callbacks: {
-    authorized({ auth, request }) {
+    authorized({ auth }) {
       return !!auth?.user;
     },
 
-    async jwt({ token, user }) {
-      if (user) {
-        const guest = await getGuest(user.email);
-        token.guestId = guest?.id ?? null;
-      }
+    async jwt({ token }) {
+      const guest = await getGuest(token.email);
+      token.guestId = guest?.id ?? null;
+
       return token;
     },
 
