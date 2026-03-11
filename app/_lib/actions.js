@@ -122,8 +122,8 @@ export async function createBookingWithGuest(bookingData, formData) {
     hasBreakfast: false,
     status: "unconfirmed",
   };
-  console.log(newBooking);
+
   await createBooking(newBooking);
   revalidatePath("/", "layout");
-  redirect("/account/reservations");
+  return { success: true };
 }
