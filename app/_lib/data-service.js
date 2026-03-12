@@ -173,6 +173,17 @@ export async function getSettings() {
   return data;
 }
 
+export async function getReviews() {
+  const { data, error } = await supabase.from("reviews").select("*");
+
+  if (error) {
+    console.error(error);
+    throw new Error("Settings could not be loaded");
+  }
+
+  return data;
+}
+
 export async function getCountries() {
   try {
     const res = await fetch(
@@ -197,9 +208,7 @@ export async function createGuest(newGuest) {
 }
 
 export async function createBooking(newBooking) {
-  const { error } = await supabase
-    .from("bookings")
-    .insert([newBooking])
+  const { error } = await supabase.from("bookings").insert([newBooking]);
 
   if (error) {
     console.error(error);

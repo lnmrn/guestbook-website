@@ -1,11 +1,13 @@
-import { Suspense } from "react";
-import ReviewClientContainer from "../_components/ReviewClientContainer";
+import { getReviews } from "../_lib/data-service";
+import Review from "../_components/Review";
 
-function Page() {
+async function Page() {
+  const reviews = await getReviews();
   return (
-    <div>
-      Review list goes here X:
-      <ReviewClientContainer />
+    <div className="flex flex-col items-center border-accent-700">
+      {reviews.map((review) => (
+        <Review key={review.id} review={review} />
+      ))}
     </div>
   );
 }

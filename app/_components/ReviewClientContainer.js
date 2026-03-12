@@ -1,16 +1,11 @@
 "use client";
 import { useAuthContext } from "./AuthContext";
+import Review from "./Review";
 
-function ReviewClientContainer() {
+function ReviewClientContainer({ reviews }) {
   const { session } = useAuthContext();
   //napravi prvo rezervacije pa onda mozes levy rigor mail dodati kao gosta
-  return (
-    <div>
-      {session?.user
-        ? "List of reviews + You can leave your review here form..."
-        : "List of reviews..."}
-    </div>
-  );
+  return <div></div>;
 }
 
 export default ReviewClientContainer;
