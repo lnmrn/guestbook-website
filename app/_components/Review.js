@@ -19,6 +19,7 @@ function Review({ review }) {
       <div className="flex">
         <div className="ml-auto">
           <StarRating
+            isDisabled={true}
             maxRating={review.stars}
             color="#A47A47"
             defaultRating={review.stars}

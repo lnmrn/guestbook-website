@@ -19,6 +19,7 @@ export default function StarRating({
   messages = [],
   defaultRating = 0,
   onSetMovieRating,
+  isDisabled = false,
 }) {
   const [rating, setRating] = useState(defaultRating);
   const [tempRating, setTempRating] = useState(0);
@@ -31,6 +32,7 @@ export default function StarRating({
   };
 
   function handleRating(rating) {
+    if (isDisabled) return;
     setRating(rating);
     onSetMovieRating(rating);
   }
@@ -41,10 +43,11 @@ export default function StarRating({
         {Array.from({ length: maxRating }, (_, i) => (
           <Star
             key={i}
-            onRate={() => handleRating(i + 1)}
+            isDisabled={isDisabled}
+            onRate={!isDisabled ? () => handleRating(i + 1) : undefined}
             full={tempRating ? tempRating > i : rating > i}
-            onHoverIn={() => setTempRating(i + 1)}
-            onHoverOut={() => setTempRating(0)}
+            onHoverIn={!isDisabled ? () => setTempRating(i + 1) : undefined}
+            onHoverOut={!isDisabled ? () => setTempRating(0) : undefined}
             color={color}
             size={size}
           />
@@ -63,12 +66,20 @@ export default function StarRating({
   );
 }
 
-function Star({ onRate, full, onHoverIn, onHoverOut, color, size }) {
+function Star({
+  onRate,
+  full,
+  onHoverIn,
+  onHoverOut,
+  color,
+  size,
+  isDisabled,
+}) {
   const starStyle = {
     width: `${size}px`,
     height: `${size}px`,
     display: "block",
-    cursor: "pointer",
+    cursor: isDisabled ? "default" : "pointer",
     margin: "0",
     padding: "0",
   };
