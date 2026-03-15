@@ -174,11 +174,12 @@ export async function getSettings() {
 }
 
 export async function getReviews() {
-  const { data, error } = await supabase.from("reviews").select("*");
+  const { data, error } = await supabase.from("reviews").select("*").order("created_at", { ascending: false })
+    .limit(5);
 
   if (error) {
     console.error(error);
-    throw new Error("Settings could not be loaded");
+    throw new Error("Reviews could not be loaded");
   }
 
   return data;

@@ -1,6 +1,8 @@
 import { getReviews } from "../_lib/data-service";
 import Review from "../_components/Review";
 
+export const revalidate = 0;
+
 async function Page() {
   const reviews = await getReviews();
   return (
