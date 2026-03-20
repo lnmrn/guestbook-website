@@ -3,7 +3,6 @@ import { UserCircleIcon } from "@heroicons/react/24/solid";
 import { formatDate } from "date-fns";
 
 function Review({ review }) {
-  console.log(review);
   return (
     <div className="p-4 border-b border-r border-l border-accent-700 items-center">
       <div className="flex items-center border-b border-accent-700 mb-2 pb-2">

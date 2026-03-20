@@ -66,6 +66,16 @@ export async function getGuest(email) {
   return data;
 }
 
+export async function getGuestById(guestId) {
+  const { data } = await supabase
+    .from("guests")
+    .select("*")
+    .eq("id", guestId)
+    .single();
+
+  return data;
+}
+
 export async function getBooking(id) {
   const { data, error } = await supabase
     .from("bookings")
@@ -174,7 +184,10 @@ export async function getSettings() {
 }
 
 export async function getReviews() {
-  const { data, error } = await supabase.from("reviews").select("*").order("created_at", { ascending: false })
+  const { data, error } = await supabase
+    .from("reviews")
+    .select("*")
+    .order("created_at", { ascending: false })
     .limit(5);
 
   if (error) {
