@@ -7,6 +7,7 @@ export const revalidate = 0;
 
 async function Page() {
   const session = await auth();
+  //PAZI DA OVO ZOVES SAMO AKO guestId nije null
   const guest = await getGuestById(session?.guestId);
   const reviews = await getReviews();
 
